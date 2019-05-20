@@ -17,6 +17,14 @@ enum AudioFormat{
 	FORMAT_ID_WAV = AV_CODEC_ID_WAVPACK
 };
 
+enum BitRate{
+	BIT_RATE_16K = 16000,
+	BIT_RATE_32K = 32000,
+	BIT_RATE_64K = 64000,
+	BIT_RATE_96K = 96000,
+	BIT_RATE_128K = 128000,
+	BIT_RATE_256K = 256000
+};
 struct AVFormatContext;
 struct AVCodecContext;
 struct SwrContext;
@@ -29,7 +37,7 @@ public:
 	AudioConvert(const std::string& inputFile,
 				const std::string& outputFile,
 				AudioFormat outputFormat,
-				int outputSampleRate,
+				BitRate outputSampleRate,
 				int outputSampleChannel);
 
 	virtual ~AudioConvert();

@@ -13,7 +13,7 @@
 AudioConvert::AudioConvert(const std::string& inputFile,
 		const std::string& outputFile,
 		AudioFormat format,
-		int outputBitRate,
+		BitRate outputBitRate,
 		int outputSampleChannel) :
 									outputFile_(outputFile),
 									inputFormatContext_(NULL),
@@ -22,13 +22,16 @@ AudioConvert::AudioConvert(const std::string& inputFile,
 									outputCodecContext_(NULL),
 									resampleContext_(NULL),
 									fifo_(NULL),
-									outputBitRate_(outputBitRate),
+									outputBitRate_(int(outputBitRate)),
 									outputSampleChannel_(outputSampleChannel)
 {
 	Transcode::open_input_file(inputFile,
 					&inputFormatContext_,
 					&inputCodecContext_);
 
+	if(getInputSampleRate() <= outputBitRate_){
+		outputBitRate_ = getInputSampleRate();
+	}
 	Transcode::open_output_file(outputFile,
 					inputCodecContext_,
 					&outputFormatContext_,

@@ -9,7 +9,7 @@
 
 using namespace std;
 int main(){
-	AudioConvert convertor("1.flac", "2.aac", FORMAT_ID_AAC, 96000, 2);
+	AudioConvert convertor("1.flac", "2.aac", FORMAT_ID_AAC, BIT_RATE_96K, 2);
 
 	convertor.convert(NULL, NULL);
 //	cout << AudioConvert::getDefaultOutputFile("hjy.MP3", FORMAT_ID_AAC) << endl;
